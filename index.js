@@ -9,10 +9,23 @@ console.log("after");
 //     console.log('Repo List',repos)
 // }
 
-const p = getUser(1)
-  .then((user) => getRepositories(user.githubUsername))
-  .then((repos) => console.log(repos))
-  .catch((err) => console.log(err.message));
+// Promise Based Approach
+// getUser(1)
+//   .then((user) => getRepositories(user.githubUsername))
+//   .then((repos) => console.log(repos))
+//   .catch((err) => console.log(err.message));
+
+// Async and await Approach
+async function displayUsingAsync() {
+  try {
+    const user = await getUser(1);
+    const repos = await getRepositories(user.githubUsername);
+    console.log(repos);
+  } catch (err) {
+      console.log(err);
+  }
+}
+displayUsingAsync();
 
 // callbacks functions
 function getUser(id) {
